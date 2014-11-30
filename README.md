@@ -27,3 +27,27 @@ How these 3 methods are achieved:
 
 3) The edit distance is calculated for the input against a subset of words in the universe in the range of input.length-1 to input.length+2. The edit distance algorithm used is the Levenshtein distance algorithm. An edit distance of less than 10 is considered a match.
 
+Note: The Levenshtein distance is not used for finding anagrams as an edit distance would be calculated, which will skew accuracy and confidence levels relative to the approximation methods. 
+
+Calculating the confidence level
+================================
+
+The confidence level is a percentage accuracy derived by the forumla: 100 - (10 * editDistance). Each edit represents a 10% reduction in accuracy.  Every anagram has an editDistance of 0 therefore a confidence level of 100.
+
+Improving accuracy
+===============================
+
+A few things should be done in order to improve the accuracy of the matches, without needing to change this implementation:
+
+1) Have a large training set, i.e. a large universe. This will produce many potential matches.
+
+2) Narrow further the range of words to check against. i.e. dont check against the entire universe, check against a subset and range of words. you may want to consider input.length +1 and -1 for precision
+
+3) Tweak the acceptable edit distance value for pontetial matches. Instead of using 10, maybe you can try using 5. 
+
+Running the application
+===============================
+
+You can run the application by runn the App class in the 'application' package. Alternatively you can run the tests in the 'tests' package as a way of beginning to inspect the code.
+
+ 
