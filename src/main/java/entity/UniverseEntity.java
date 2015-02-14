@@ -7,12 +7,14 @@ public class UniverseEntity {
 	final long productOfChars;
 	final String originalEntry;
 	
-	public UniverseEntity(String originalEntry) {
+	public UniverseEntity(String originalEntry) 
+	{
 		this.originalEntry = originalEntry;
 		productOfChars = calculateProductOfChars(originalEntry);
 	}
 
-	protected long calculateProductOfChars(String originalEntry) {
+	protected long calculateProductOfChars(String originalEntry) 
+	{
 	  return Utilities.calculateProductOfChars(originalEntry);
 	}
 	

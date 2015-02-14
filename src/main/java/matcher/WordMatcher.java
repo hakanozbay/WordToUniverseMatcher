@@ -23,7 +23,8 @@ public class WordMatcher implements IWordMatcher {
 	}
 
 	@Override
-	public List<MatchEntity> matchWordToUniverse(String word) {
+	public List<MatchEntity> matchWordToUniverse(String word) 
+	{
 
 		Set<MatchEntity> uniqueMatches = new HashSet<>();
 		uniqueMatches.addAll(findAnagrams(word));
@@ -46,10 +47,8 @@ public class WordMatcher implements IWordMatcher {
 		long productOfCharsForWord = Utilities.calculateProductOfChars(word);
 
 		for (UniverseEntity entity : listOfEntitiesWithSameLength)
-		{
 			if (entity.getProductOfChars() == productOfCharsForWord)
 				listOfAnagrams.add(new MatchEntity(entity.getOriginalEntry(), Utilities.LevenshteinDistance(word, entity.getOriginalEntry())));
-		}
 
 		return listOfAnagrams;
 	}
@@ -64,11 +63,10 @@ public class WordMatcher implements IWordMatcher {
 		List<MatchEntity> listOfMatches = new ArrayList<>();
 
 		for (UniverseEntity entity : rangeOfEntitesToMatch)
-		{
 			if (entity.getProductOfChars() % productOfCharsForWord == 0)
 				listOfMatches.add(
 						new MatchEntity(entity.getOriginalEntry(), Utilities.LevenshteinDistance(word, entity.getOriginalEntry())));
-		}
+		
 		return listOfMatches;
 	}
 

@@ -21,11 +21,10 @@ public class TreeUniverse implements Universe {
 	}
 
 	@Override
-	public void buildUniverse(String[] entities) {
-
+	public void buildUniverse(String[] entities) 
+	{
 		for (String entity : entities)
 			addToUniverse(entity);
-
 	}
 
 	@Override
@@ -56,18 +55,21 @@ public class TreeUniverse implements Universe {
 	}
 
 	@Override
-	public int sizeOfUniverse() {
+	public int sizeOfUniverse() 
+	{
 		return universe.size();
 	}
 
 
 	@Override
-	public List<UniverseEntity> getSubSetOfUniverse(Object key) {
+	public List<UniverseEntity> getSubSetOfUniverse(Object key) 
+	{
 		return universe.get(key) == null?Collections.<UniverseEntity>emptyList():universe.get(key);
 	}
 
 	@Override
-	public List<UniverseEntity> getSubSetRangeOfUniverse(Object fromKey, Object toKey) {
+	public List<UniverseEntity> getSubSetRangeOfUniverse(Object fromKey, Object toKey) 
+	{
 		SortedMap<Integer, List<UniverseEntity>> rangeMap = universe.subMap((Integer)fromKey, (Integer)toKey);
 		Collection<List<UniverseEntity>> collectionOfValues = rangeMap.values();
 		Iterator<List<UniverseEntity>> iterator = collectionOfValues.iterator();
@@ -75,9 +77,7 @@ public class TreeUniverse implements Universe {
 		List<UniverseEntity> cumulativeEntities = new ArrayList<>();
 
 		while(iterator.hasNext())
-		{
 			cumulativeEntities.addAll(iterator.next());
-		}
 
 		return cumulativeEntities;
 	}

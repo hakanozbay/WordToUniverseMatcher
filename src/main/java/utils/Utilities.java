@@ -8,14 +8,13 @@ import entity.MatchEntity;
 
 public class Utilities {
 
-	public static long calculateProductOfChars(String originalEntry) {
+	public static long calculateProductOfChars(String originalEntry) 
+	{
 		char chars[] = originalEntry.toLowerCase().toCharArray();
 		
 		long product = 1;
 		for (char character : chars)
-		{
 			product = product * Character.getNumericValue(character);
-		}
 		
 		return product;
 	}
