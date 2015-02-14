@@ -5,8 +5,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import matcher.WordMatcher;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -42,9 +40,9 @@ public class WordMatcherTest {
 	public void testFindMatchesThroughCompositionAndEditDistance()
 	{
 		List<MatchEntity> potentialMatch = wordMatcher.findPotentialMatchesThroughCompositionAndEditDistance("cat");
-		assertEquals(3,potentialMatch.size());
-		
 		System.out.println(potentialMatch);
+		
+		assertEquals(3,potentialMatch.size());
 		
 	}
 	
@@ -52,9 +50,9 @@ public class WordMatcherTest {
 	public void testFindMatchesThroughApproximation()
 	{
 		List<MatchEntity> potentialMatch = wordMatcher.findPotentialMatchesThroughApproximation("sat");
-		assertEquals(2,potentialMatch.size());
-		
 		System.out.println(potentialMatch);
+		
+		assertEquals(5,potentialMatch.size());
 		
 	}
 	
@@ -62,9 +60,9 @@ public class WordMatcherTest {
 	public void testMatchWordToUniverse()
 	{
 		List<MatchEntity> potentialMatch = wordMatcher.matchWordToUniverse("cat");
-		assertEquals(4,potentialMatch.size());
-		
 		System.out.println(potentialMatch);
+		
+		assertEquals(5,potentialMatch.size());
 		
 	}
 

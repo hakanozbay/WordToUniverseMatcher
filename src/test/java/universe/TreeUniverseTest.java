@@ -8,7 +8,6 @@ import java.util.List;
 import org.junit.Before;
 import org.junit.Test;
 
-import universe.TreeUniverse;
 import entity.UniverseEntity;
 
 public class TreeUniverseTest {
@@ -27,7 +26,7 @@ public class TreeUniverseTest {
 	
 	@Test
 	public void testSizeOfUniverse() {
-		assertEquals(4, treeUniverse.sizeOfUniverse());
+		assertEquals(5, treeUniverse.sizeOfUniverse());
 	}
 	
 	@Test

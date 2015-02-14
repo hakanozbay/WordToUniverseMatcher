@@ -4,8 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import utils.Utilities;
-
 public class EditDistanceAlgorithmTest {
 
 	@Test
@@ -17,7 +15,6 @@ public class EditDistanceAlgorithmTest {
 	@Test
 	public void testEditDistanceAlgorithmForTheSameWordMistype() {
 		int editDistance = Utilities.LevenshteinDistance("act", "cat");
-		//assertEquals(0, editDistance);
 		assertEquals(2, editDistance);
 	}
 	

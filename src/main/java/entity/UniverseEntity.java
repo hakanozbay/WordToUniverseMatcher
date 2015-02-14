@@ -4,7 +4,7 @@ import utils.Utilities;
 
 public class UniverseEntity {
 
-	final int productOfChars;
+	final long productOfChars;
 	final String originalEntry;
 	
 	public UniverseEntity(String originalEntry) {
@@ -12,11 +12,11 @@ public class UniverseEntity {
 		productOfChars = calculateProductOfChars(originalEntry);
 	}
 
-	protected int calculateProductOfChars(String originalEntry) {
+	protected long calculateProductOfChars(String originalEntry) {
 	  return Utilities.calculateProductOfChars(originalEntry);
 	}
 	
-	public int getProductOfChars()
+	public long getProductOfChars()
 	{
 		return productOfChars;
 	}

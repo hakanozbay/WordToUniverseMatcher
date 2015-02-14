@@ -4,8 +4,6 @@ import java.util.List;
 
 import entity.UniverseEntity;
 
-
-
 public interface Universe {
 
 	public void buildUniverse(String[] entities);

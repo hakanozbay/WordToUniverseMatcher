@@ -1,7 +1,9 @@
 package matcher;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import universe.Universe;
 import utils.Utilities;
@@ -10,32 +12,38 @@ import entity.UniverseEntity;
 
 public class WordMatcher implements IWordMatcher {
 
-	Universe universe;
+	private Universe universe;
+	private int acceptableEditDistance = 10;
+	private int lowerBoundOfSubSetFromWordLength = 1;
+	private int upperBoundOfSubSetFromWordLength = 4;
 
 	public WordMatcher(Universe universe)
 	{
 		this.universe = universe;
 	}
-	
+
 	@Override
 	public List<MatchEntity> matchWordToUniverse(String word) {
-		
-		List<MatchEntity> matches= findAnagrams(word);
-		matches.addAll(findPotentialMatchesThroughCompositionAndEditDistance(word));
-		matches.addAll(findPotentialMatchesThroughApproximation(word));
-		
-		List<MatchEntity> uniqueMatches = Utilities.removeDuplicates(matches);
-		Utilities.rankAndOrderMatches(uniqueMatches);
-		return uniqueMatches;
+
+		Set<MatchEntity> uniqueMatches = new HashSet<>();
+		uniqueMatches.addAll(findAnagrams(word));
+		uniqueMatches.addAll(findPotentialMatchesThroughCompositionAndEditDistance(word));
+		uniqueMatches.addAll(findPotentialMatchesThroughApproximation(word));
+
+		List<MatchEntity> matches = new ArrayList<>(uniqueMatches);
+
+		Utilities.rankAndOrderMatches(matches);
+		return matches;
 	}
 
 
 	@Override
-	public List<MatchEntity> findAnagrams(String word) {
+	public List<MatchEntity> findAnagrams(String word) 
+	{
 		List<UniverseEntity> listOfEntitiesWithSameLength =  universe.getSubSetOfUniverse(word.length());
 		List<MatchEntity> listOfAnagrams = new ArrayList<>();
 
-		int productOfCharsForWord = Utilities.calculateProductOfChars(word);
+		long productOfCharsForWord = Utilities.calculateProductOfChars(word);
 
 		for (UniverseEntity entity : listOfEntitiesWithSameLength)
 		{
@@ -47,10 +55,11 @@ public class WordMatcher implements IWordMatcher {
 	}
 
 	@Override
-	public List<MatchEntity> findPotentialMatchesThroughCompositionAndEditDistance(String word) {
+	public List<MatchEntity> findPotentialMatchesThroughCompositionAndEditDistance(String word) 
+	{
 		List<UniverseEntity> rangeOfEntitesToMatch = universe.getSubSetRangeOfUniverse(word.length() - 1, word.length() + 4);
 
-		int productOfCharsForWord = Utilities.calculateProductOfChars(word);
+		long productOfCharsForWord = Utilities.calculateProductOfChars(word);
 
 		List<MatchEntity> listOfMatches = new ArrayList<>();
 
@@ -64,18 +73,39 @@ public class WordMatcher implements IWordMatcher {
 	}
 
 	@Override
-	public List<MatchEntity> findPotentialMatchesThroughApproximation(String word) {
-		List<UniverseEntity> rangeOfEntitesToMatch = universe.getSubSetRangeOfUniverse(word.length() - 1, word.length() + 4);
+	public List<MatchEntity> findPotentialMatchesThroughApproximation(String word) 
+	{
+
+		List<UniverseEntity> rangeOfEntitesToMatch;
+
+		if(word.length() == 1)
+			rangeOfEntitesToMatch = universe.getSubSetRangeOfUniverse(word.length(), word.length() + getUpperBoundOfSubSetFromWordLength());
+		else
+			rangeOfEntitesToMatch = universe.getSubSetRangeOfUniverse(word.length() - getLowerBoundOfSubSetFromWordLength(), word.length() + getUpperBoundOfSubSetFromWordLength());
+
 		List<MatchEntity> listOfMatches = new ArrayList<>();
 
 		for (UniverseEntity entity : rangeOfEntitesToMatch)
 		{
 			int editDistance = Utilities.LevenshteinDistance(word, entity.getOriginalEntry()) ; 
-			if (editDistance < 10)
+			if (editDistance < getAcceptableEditDistance())
 				listOfMatches.add(new MatchEntity(entity.getOriginalEntry(), editDistance));
 		}
 		return listOfMatches;
 
+	}
+
+	protected int getLowerBoundOfSubSetFromWordLength() {
+		return lowerBoundOfSubSetFromWordLength;
+	}
+
+	protected int getUpperBoundOfSubSetFromWordLength() {
+		return upperBoundOfSubSetFromWordLength;
+	}
+
+	protected int getAcceptableEditDistance() 
+	{
+		return acceptableEditDistance;
 	}
 
 

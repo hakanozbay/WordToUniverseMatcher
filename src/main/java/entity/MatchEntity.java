@@ -13,7 +13,7 @@ public class MatchEntity {
 		this.confidenceLevelAsPercentage = calculateConfidenceLevelAsPercentage(editDistance); 
 	}
 
-	private int calculateConfidenceLevelAsPercentage(int editDistance) {
+	protected int calculateConfidenceLevelAsPercentage(int editDistance) {
 		return 100 - (editDistance * 10);
 	}
 
