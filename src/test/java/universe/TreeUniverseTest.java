@@ -25,7 +25,8 @@ public class TreeUniverseTest {
 	}
 	
 	@Test
-	public void testSizeOfUniverse() {
+	public void testSizeOfUniverse() 
+	{
 		assertEquals(5, treeUniverse.sizeOfUniverse());
 	}
 	

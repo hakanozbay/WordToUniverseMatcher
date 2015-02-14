@@ -29,7 +29,8 @@ public class UniverseEntity {
 	}
 
 	@Override
-	public String toString() {
+	public String toString() 
+	{
 		StringBuilder builder = new StringBuilder();
 		builder.append("UniverseEntity [productOfChars=");
 		builder.append(productOfChars);

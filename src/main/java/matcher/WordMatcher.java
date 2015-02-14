@@ -93,11 +93,13 @@ public class WordMatcher implements IWordMatcher {
 
 	}
 
-	protected int getLowerBoundOfSubSetFromWordLength() {
+	protected int getLowerBoundOfSubSetFromWordLength() 
+	{
 		return lowerBoundOfSubSetFromWordLength;
 	}
 
-	protected int getUpperBoundOfSubSetFromWordLength() {
+	protected int getUpperBoundOfSubSetFromWordLength() 
+	{
 		return upperBoundOfSubSetFromWordLength;
 	}
 

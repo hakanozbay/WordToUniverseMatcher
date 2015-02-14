@@ -29,7 +29,8 @@ public class WordMatcherTest {
 	}
 	
 	@Test
-	public void testFindAnagrams() {
+	public void testFindAnagrams() 
+	{
 		List<MatchEntity> anagrams = wordMatcher.findAnagrams("cat");
 		assertTrue(anagrams.size() == 1);
 		

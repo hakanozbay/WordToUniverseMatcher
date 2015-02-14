@@ -6,31 +6,37 @@ public class MatchEntity {
 	private int editDistance;
 	private int confidenceLevelAsPercentage;
 	
-	public MatchEntity(String word, int editDistance) {
+	public MatchEntity(String word, int editDistance) 
+	{
 		super();
 		this.word = word;
 		this.editDistance = editDistance;
 		this.confidenceLevelAsPercentage = calculateConfidenceLevelAsPercentage(editDistance); 
 	}
 
-	protected int calculateConfidenceLevelAsPercentage(int editDistance) {
+	protected int calculateConfidenceLevelAsPercentage(int editDistance) 
+	{
 		return 100 - (editDistance * 10);
 	}
 
-	public String getWord() {
+	public String getWord() 
+	{
 		return word;
 	}
 
-	public int getEditDistance() {
+	public int getEditDistance() 
+	{
 		return editDistance;
 	}
 
-	public int getConfidenceLevelAsPercentage() {
+	public int getConfidenceLevelAsPercentage() 
+	{
 		return confidenceLevelAsPercentage;
 	}
 
 	@Override
-	public String toString() {
+	public String toString() 
+	{
 		StringBuilder builder = new StringBuilder();
 		builder.append("MatchEntity [word=");
 		builder.append(word);
@@ -43,7 +49,8 @@ public class MatchEntity {
 	}
 
 	@Override
-	public int hashCode() {
+	public int hashCode() 
+	{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + confidenceLevelAsPercentage;
@@ -53,7 +60,8 @@ public class MatchEntity {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
+	public boolean equals(Object obj) 
+	{
 		if (this == obj)
 			return true;
 		if (obj == null)
@@ -72,8 +80,5 @@ public class MatchEntity {
 			return false;
 		return true;
 	}
-	
-	
-	
 	
 }
